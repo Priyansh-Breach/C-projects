@@ -155,5 +155,4 @@ void main()
     
     int n = (d + k + y + 1)%7;
     printf("%s\n",arr[n]);
-    printf("%d %d %d %d %d %d", t , m , d , k , y , p);
 }
