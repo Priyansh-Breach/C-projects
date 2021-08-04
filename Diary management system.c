@@ -48,7 +48,7 @@ void main()
             while(head -> next != NULL)
             {
                 printf("%d\n",head -> date);
-                printf("%s",head -> data);
+                printf("%s\n",head -> data);
                 head = head -> next;
             }
             printf("\n\n\n");
