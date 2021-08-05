@@ -90,7 +90,7 @@ void insert_last()
 void display()
 {
     disp = first;
-    while(disp != last)
+    while(disp != NULL)
     {
         printf("%s\n",disp -> data);
         disp = disp -> next;
