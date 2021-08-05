@@ -20,30 +20,31 @@ char bb[1000];
 
 void main()
 {
-    
-    start:
-    printf("PRESS 1 TO CREATE A DIARY \nPRESS 2 TO ADD A NEW NOTE \nPRESS 3 TO DISPLAY OLD NOTES \nPRESS 0 TO EXIT");
-    scanf("%d",&x);
-    switch(x)
+    while(1)
     {
-        case 1:
+        printf("PRESS 1 TO CREATE A DIARY \nPRESS 2 TO ADD A NEW NOTE \nPRESS 3 TO DISPLAY OLD NOTES \nPRESS 0 TO EXIT");
+        scanf("%d",&x);
+        switch(x)
         {
-            create();
-            goto start;
-        }
-        case 2:
-        {
-            insert_last();
-            goto start;
-        }
-        case 3:
-        {
-            display();
-            goto start;
-        }
-        case 0:
-        {
-            exit;
+            case 1:
+            {
+                create();
+                break;
+            }
+            case 2:
+            {
+                insert_last();
+                break;
+            }
+            case 3:
+            {
+                display();
+                break;
+            }
+            case 0:
+            {
+                exit;
+            }
         }
     }
 }
@@ -96,4 +97,3 @@ void display()
         disp = disp -> next;
     }
 }
-
