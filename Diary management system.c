@@ -15,8 +15,10 @@ struct diary
 };
 
 struct diary *first = NULL,*last = NULL,*current,*disp;
-int aa,dd,x;
-char bb[1000],cc[1000];
+int aa,x;
+char bb[1000];
+int dd;
+char cc[1000];
 
 void main()
 {
@@ -64,7 +66,7 @@ void create()
         current -> data = bb;
         current -> next = NULL;
         first = current;
-        last = current;
+        last = first;
     }
     else
     {
@@ -83,12 +85,11 @@ void insert_last()
     current -> data = cc;
     current -> next = NULL;
     last = first;
-   /* while(disp != NULL)
+    while(last -> next != NULL)
     {
         last = last -> next;
-    }*/
+    }
     last -> next = current;
-    last = current;
 }
 
 void display()
