@@ -15,8 +15,8 @@ struct diary
 };
 
 struct diary *first = NULL,*last = NULL,*current,*disp;
-int aa,x;
-char bb[1000];
+int aa,dd,x;
+char bb[1000],cc[1000];
 
 void main()
 {
@@ -78,11 +78,11 @@ void insert_last()
 {
     struct diary *current = (struct diary*)malloc(sizeof(struct diary));
     printf("ENETR TODAY'S DATE IN DDMMYYYY FORMAT:");
-    scanf("%d",&aa);
-    current -> date = aa;
+    scanf("%d",&dd);
+    current -> date = dd;
     printf("TODAY'S NOTE:");
-    scanf(" %[^\n]%*s",bb);
-    current -> data = bb;
+    scanf(" %[^\n]%*s",cc);
+    current -> data = cc;
     current -> next = NULL;
     last -> next = current;
     last = current;
