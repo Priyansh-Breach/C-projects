@@ -2,26 +2,23 @@
 #include<stdlib.h>
 #include<string.h>
 
-void create();
-void insert_last();
-void display();
-
-
 struct diary
 {
     int date;
-    char *data;
+    char data[1000];
     struct diary *next;
+    struct diary *prev;
 };
+typedef struct diary node;
 
-struct diary *first = NULL,*last = NULL,*current,*disp;
-int aa,x;
-char bb[1000];
-int dd;
-char cc[1000];
+void new_note(node *p);
+void print_note(node *k);
 
-void main()
+
+int main()
 {
+    node *head, *tail;
+    int s = 0,x;
     start:
     printf("PRESS 1 TO CREATE A DIARY \nPRESS 2 TO ADD A NEW NOTE \nPRESS 3 TO DISPLAY OLD NOTES \nPRESS 0 TO EXIT");
     scanf("%d",&x);
@@ -29,17 +26,34 @@ void main()
     {
         case 1:
         {
-            create();
+            if(s == 0)
+            {
+                head = (node*)malloc(sizeof(node));
+                printf("ENETR TODAY'S DATE IN DDMMYYYY FORMAT:");
+                scanf("%d",&head -> date);
+                printf("TODAY'S NOTE:");
+                scanf("%[^\n]s", head -> data);
+                head -> next = NULL;
+                head -> prev = NULL;
+                s = s + 1;
+                printf("%d",s);
+                tail = (node*)malloc(sizeof(node));
+                head -> next = tail;
+                tail -> prev = head;
+            }
+            else
+            {
+                printf("DIARY IS ALREADY CREATED\n");
+            }
             goto start;
         }
         case 2:
         {
-            insert_last();
-            goto start;
+            new_note(tail);
         }
         case 3:
         {
-            display();
+            print_note(head);
             goto start;
         }
         case 0:
@@ -49,55 +63,30 @@ void main()
     }
 }
 
-
-
-
-
-void create()
+void new_note(node *p)
 {
-    if((first == NULL)&&(last == NULL))
-    {
-        struct diary *current = (struct diary*)malloc(sizeof(struct diary));
-        printf("ENETR TODAY'S DATE IN DDMMYYYY FORMAT:");
-        scanf("%d",&aa);
-        current -> date = aa;
-        printf("TODAY'S NOTE:");
-        scanf(" %[^\n]%*s",bb);
-        current -> data = bb;
-        current -> next = NULL;
-        first = current;
-        last = first;
-    }
-    else
-    {
-        printf("DIARY IS ALREADY CREATED\n");
-    }
-}
-
-void insert_last()
-{
-    struct diary *current = (struct diary*)malloc(sizeof(struct diary));
+    int m;
     printf("ENETR TODAY'S DATE IN DDMMYYYY FORMAT:");
-    scanf("%d",&dd);
-    current -> date = dd;
+    scanf("%d",&p -> date);
     printf("TODAY'S NOTE:");
-    scanf(" %[^\n]%*s",cc);
-    current -> data = cc;
-    current -> next = NULL;
-    last = first;
-    while(last -> next != NULL)
+    scanf(" %[^\n]s", p -> data);
+    printf("PRESS 1 TO CREATE A NEW NOTE: ");
+    scanf("%d", &m);
+    if( m == 1)
     {
-        last = last -> next;
+       new_note(p -> next); 
     }
-    last -> next = current;
+    else 
+    {
+        printf(" ");
+    }
 }
 
-void display()
+void print_note(node *k)
 {
-    disp = first;
-    while(disp != NULL)
+    if(k -> next != NULL)
     {
-        printf("%s\n",disp -> data);
-        disp = disp -> next;
+        printf("%s", k -> data);
     }
+    print_note(k -> next);
 }
